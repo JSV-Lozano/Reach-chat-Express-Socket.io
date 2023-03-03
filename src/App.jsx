@@ -35,22 +35,28 @@ function App() {
   }, [messages]);
   return (
     <div className="App">
+      <h1>Chat React</h1>
       <div className="Chat">
-      {messages.map((message, index) => (
-        <div className="bubleChat" key={index}>
-          <p>
-            {message.from} : {message.body}
-          </p>
-        </div>
-      ))}
+        {messages.map((message, index) => (
+          <div
+            className={`bubleChat ${message.from == "Yo" ? "ChatMe" : ""}`}
+            key={index}
+          >
+            <p className={`chatTex ${message.from == "Yo" ? "ChatMes" : ""}`}>
+              {message.from} : {message.body}
+            </p>
+          </div>
+        ))}
       </div>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-        />
-        <button>Send</button>
+        <div>
+          <input
+            type="text"
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+          />
+          <button>Send</button>
+        </div>
       </form>
     </div>
   );
